@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /*for tab control*/
+    div.login-logout-tab div.card-header {
+        padding: 0px 0px 12px 0px;
+    }
+
+    div.login-logout-tab ul.nav-tabs {
+        margin: 0px 0px -12px 0px;
+    }
+
+    div.login-logout-tab li.nav-item {
+        width: 50%;
+    }
+
+    div.login-logout-tab a.nav-link {
+        font-size: 25px;
+        color: #495057;
+        text-align: center;
+    }
+
+    div.card-content {
+        padding: 10px 20px;
+    }
+
+    /*login form*/
+    div.login-form-icon {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card login-logout-tab">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href='/Identity/Account/Login'>login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='/Identity/Account/Register'>cadastro</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-content">
+                <div class="col-md-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @RenderSection("Scripts", required: false)
+    <script>
+        $(function () {
+            var current = location.pathname;
+            $('.nav-tabs li a').each(function () {
+                var $this = $(this);
+                if (current.indexOf($this.attr('href')) !== -1) {
+                    $this.addClass('active');
+                }
+            })
+        })
+    </script>
+}
